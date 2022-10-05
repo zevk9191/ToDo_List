@@ -1,0 +1,35 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+#taskList {
+    display: flex;
+    flex-flow: column nowrap;
+    visibility: hidden;
+
+}
+.tasks {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 10px;
+    background: #f1f1f1;
+    font-size: 20px;
+    line-height: 22px;
+    color: #404040;
+    font-family: 'Lucida Grande', Verdana, sans-serif;
+}
+.taskButton {
+    background: lightseagreen;
+    color: #fff;
+    padding: 4px 10px;
+    margin: 0 0 0 4px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    vertical-align: bottom;
+    width: auto;
+    height: auto;
+}
