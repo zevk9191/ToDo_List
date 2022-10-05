@@ -47,3 +47,8 @@ button {
     align-items: center;
     justify-content: space-around;
 }
+
+#inputTask {
+    display: flex;
+    flex-flow: row nowrap;
+}
