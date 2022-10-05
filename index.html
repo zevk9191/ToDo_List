@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDo_List</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+<h1 id="header">To Do List</h1>
+<div id="container">
+    <div id="inputTask">
+        <input type="text">
+        <button type="submit" class="btnSubmit">+</button>
+    </div>
+    <div id="taskList"></div>
+    <div id="secondaryButtons">
+        <button type="submit" id="btnClearList">Clear List</button>
+        <button type="submit" id="btnClearCompleted">Clear Completed</button>
+        <select name="typeTask" id="selectTypeTask">
+            <option value="All">All</option>
+            <option value="Active">Active</option>
+            <option value="Completed">Completed</option>
+        </select>
+        <span id="outNumberTasks"> You have 2 task(s) left! </span>
+    </div>
+</div>
+</body>
+</html>
