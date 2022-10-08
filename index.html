@@ -6,17 +6,19 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ToDo_List</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="styleForCreateTask.css">
+    <link rel="stylesheet" href="styles/style_basic.css">
+    <link rel="stylesheet" href="styles/style_class.css">
+    <link rel="stylesheet" href="styles/style_id.css">
+    <link rel="stylesheet" href="styles/style_pseudo.css">
     <script src="script.js" defer></script>
 </head>
 <body>
 <h1 id="header">To Do List</h1>
 <div id="container">
-    <div id="inputTask">
-        <input type="text">
+    <form id="inputTask">
+        <input type="text" class="inputText">
         <button type="submit" class="btnSubmit">+</button>
-    </div>
+    </form>
     <div id="taskList"></div>
     <div id="secondaryButtons">
         <button type="submit" id="btnClearList">Clear List</button>

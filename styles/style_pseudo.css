@@ -1,0 +1,31 @@
+#btnClearCompleted:hover, .btnDelete:hover {
+    background: darkred;
+}
+
+#btnClearList:hover {
+    background: red;
+}
+
+.btnSubmit:hover {
+    background: #59a4d5;
+}
+
+.btnEdit:hover {
+    background: #cb7539;
+}
+
+.taskText::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    background: #e80606;
+    width: 0%;
+    top: 50%;
+    left: 0%;
+    transform: translateY(-50%);
+    transition: width 0.2s linear;
+}
+
+.taskText.active::after {
+    width: 100%;
+}
