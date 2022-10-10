@@ -13,23 +13,23 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-<h1 id="header">To Do List</h1>
-<div id="container">
+<header id="header"><h1>To Do List</h1></header>
+<main id="container">
     <form id="inputTask">
         <input type="text" class="inputText">
-        <button type="submit" class="btnSubmit">+</button>
+        <button class="btnSubmit">+</button>
     </form>
-    <div id="taskList"></div>
+    <ul id="taskList"></ul>
     <div id="secondaryButtons">
-        <button type="submit" id="btnClearList">Clear List</button>
-        <button type="submit" id="btnClearCompleted">Clear Completed</button>
+        <button id="btnClearList">Clear List</button>
+        <button id="btnClearCompleted">Clear Completed</button>
         <select name="typeTask" id="selectTypeTask">
             <option value="All">All</option>
             <option value="Active">Active</option>
             <option value="Completed">Completed</option>
         </select>
-        <span id="outNumberTasks"> You have 2 task(s) left! </span>
+        <p>You have <span id="outNumberTasks">0</span> task(s) left!</p>
     </div>
-</div>
+</main>
 </body>
 </html>

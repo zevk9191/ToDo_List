@@ -1,29 +1,29 @@
-let form = document.body.querySelector('form')
-let taskList = document.getElementById('taskList')
-let textInput = document.querySelector('.inputText')
+const form = document.body.querySelector('form');
+const taskList = document.getElementById('taskList');
+const textInput = document.querySelector('.inputText');
+const sequenceNumberEnter = 13;
 
-form.addEventListener("click", createTask)
+form.addEventListener("submit", createTask);
 
 function createTask(event) {
-    event.preventDefault()
-    let div = document.createElement("div");
-    let divText = document.createElement("div");
-    let input = document.createElement("input");
-    let buttonDelete = document.createElement("button");
-    let buttonEdit = document.createElement("button");
+    event.preventDefault();
+    const div = document.createElement("div");
+    const divText = document.createElement("div");
+    const input = document.createElement("input");
+    const buttonDelete = document.createElement("button");
+    const buttonEdit = document.createElement("button");
     input.setAttribute('type', 'checkbox');
     buttonEdit.className = 'taskButton btnEdit';
     buttonDelete.className = 'taskButton btnDelete';
-    divText.className = 'taskText'
+    divText.className = 'taskText';
     buttonEdit.textContent = 'Edit';
     buttonDelete.textContent = 'Delete';
-    if (textInput.value == '' || null || undefined) {
-        return
-    } else {
-        divText.textContent = textInput.value
-        textInput.value = '';
-    }
     div.className = 'tasks';
+    if (textInput.value === '') {
+        return
+    }
+    divText.textContent = textInput.value
+    textInput.value = '';
     div.append(input);
     div.append(divText);
     div.append(buttonEdit);
@@ -32,22 +32,23 @@ function createTask(event) {
     taskList.style.visibility = 'visible'
     buttonDelete.addEventListener("click", () => {
         div.remove()
-    })
+    });
     buttonEdit.addEventListener("click", () => {
-        divText.setAttribute('contenteditable', 'true')
-        divText.setAttribute('tabindex', '-1')
+        divText.setAttribute('contenteditable', 'true');
+        divText.setAttribute('tabindex', '-1');
         divText.focus();
-        divText.onblur = function () {
-            divText.setAttribute('contenteditable', 'false')
-        }
-    })
+    });
+
+    divText.onblur = () => {
+        divText.setAttribute('contenteditable', 'false')
+    };
+
     divText.addEventListener('keydown', function (event) {
-        if (event.keyCode === 13) {
-            divText.blur()
+        if (event.keyCode === sequenceNumberEnter) {
+            divText.blur();
         }
-    })
+    });
     input.addEventListener("click", function () {
         divText.classList.toggle('active');
-    })
+    });
 }
-
