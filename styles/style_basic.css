@@ -10,6 +10,7 @@ body {
     justify-content: space-around;
     align-items: center;
 }
+
 button {
     background: lightseagreen;
     color: #fff;
@@ -22,6 +23,7 @@ button {
     cursor: pointer;
     vertical-align: bottom;
 }
+
 p {
     margin: 0;
     padding: 0;
@@ -32,3 +34,7 @@ ul {
     margin: 0;
 }
 
+input[type="text"]:focus {
+    color: #000000;
+    border: 1px solid #000000
+}

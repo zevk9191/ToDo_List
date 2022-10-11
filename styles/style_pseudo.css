@@ -14,18 +14,20 @@
     background: #cb7539;
 }
 
-.taskText::after {
-    content: "";
-    position: absolute;
-    height: 2px;
-    background: #e80606;
-    width: 0%;
-    top: 50%;
-    left: 0%;
-    transform: translateY(-50%);
-    transition: width 0.2s linear;
+.taskText.active {
+    background: rgba(111, 218, 96, 0.76);
 }
 
-.taskText.active::after {
-    width: 100%;
+#selectTypeTask::part(button) {
+    color: white;
+    background-color: #f00;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#selectTypeTask::part(listbox) {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid red;
+    border-radius: 5px;
 }
