@@ -22,13 +22,8 @@ button {
     cursor: pointer;
     vertical-align: bottom;
 }
-p {
+p, ul {
     margin: 0;
     padding: 0;
-}
-
-ul {
-    padding: 0;
-    margin: 0;
 }
 

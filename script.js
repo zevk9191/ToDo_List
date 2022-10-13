@@ -1,7 +1,7 @@
-const form = document.body.querySelector('form');
+const form = document.querySelector('form');
 const taskList = document.getElementById('taskList');
 const textInput = document.querySelector('.inputText');
-const SEQUENCENUMBERENTER = 13;
+const SEQUENCE_NUMBER_ENTER = 13;
 
 form.addEventListener("submit", createTask);
 
@@ -19,10 +19,10 @@ function createTask(event) {
     buttonEdit.textContent = 'Edit';
     buttonDelete.textContent = 'Delete';
     div.className = 'tasks';
-    if (textInput.value === '') {
-        return
+    if (!textInput.value) {
+        return;
     }
-    divText.textContent = textInput.value
+    divText.textContent = textInput.value;
     textInput.value = '';
     div.append(input);
     div.append(divText);
@@ -44,7 +44,7 @@ function createTask(event) {
     });
 
     divText.addEventListener('keydown', function (event) {
-        if (event.keyCode === SEQUENCENUMBERENTER) {
+        if (event.keyCode === SEQUENCE_NUMBER_ENTER) {
             divText.blur();
         }
     });
