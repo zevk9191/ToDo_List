@@ -1,7 +1,7 @@
 const form = document.body.querySelector('form');
 const taskList = document.getElementById('taskList');
 const textInput = document.querySelector('.inputText');
-const sequenceNumberEnter = 13;
+const SEQUENCENUMBERENTER = 13;
 
 form.addEventListener("submit", createTask);
 
@@ -39,12 +39,12 @@ function createTask(event) {
         divText.focus();
     });
 
-    divText.onblur = () => {
-        divText.setAttribute('contenteditable', 'false')
-    };
+    divText.addEventListener("blur", () => {
+        divText.setAttribute('contenteditable', 'false');
+    });
 
     divText.addEventListener('keydown', function (event) {
-        if (event.keyCode === sequenceNumberEnter) {
+        if (event.keyCode === SEQUENCENUMBERENTER) {
             divText.blur();
         }
     });
