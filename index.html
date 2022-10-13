@@ -6,20 +6,20 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ToDo_List</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style_basic.css">
+    <link rel="stylesheet" href="styles/style_class.css">
+    <link rel="stylesheet" href="styles/style_id.css">
+    <link rel="stylesheet" href="styles/style_pseudo.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-<h1 id="header">To Do List</h1>
-<div id="container">
-    <div id="inputTask">
-        <form>
-            <input type="text">
-            <button type="submit" class="btnSubmit">+</button>
-        </form>
-
-    </div>
-    <div id="taskList"></div>
+<header id="header"><h1>To Do List</h1></header>
+<main id="container">
+    <form id="inputTask">
+        <input type="text" class="inputText">
+        <button type="submit" class="btnSubmit">+</button>
+    </form>
+    <ul id="taskList"></ul>
     <div id="secondaryButtons">
         <button id="btnClearList">Clear List</button>
         <button id="btnClearCompleted">Clear Completed</button>
@@ -28,8 +28,8 @@
             <option value="Active">Active</option>
             <option value="Completed">Completed</option>
         </select>
-        <span id="outNumberTasks"> You have 2 task(s) left! </span>
+        <p>You have <span id="outNumberTasks">0</span> task(s) left!</p>
     </div>
-</div>
+</main>
 </body>
 </html>
