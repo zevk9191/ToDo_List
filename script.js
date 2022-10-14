@@ -5,9 +5,14 @@ const btnClearList = document.querySelector('#btnClearList');
 const btnClearCompleted = document.querySelector('#btnClearCompleted');
 const selectTypeTask = document.querySelector('#selectTypeTask');
 const outNumberTasks = document.querySelector('#outNumberTasks');
-const SEQUENCENUMBERENTER = 13;
+const SEQUENCE_NUMBER_ENTER = 13;
+let taskArray = [];
 
 form.addEventListener("submit", createTask);
+
+function randomToken() {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
 
 function createTask(event) {
     event.preventDefault();
@@ -21,9 +26,10 @@ function createTask(event) {
     buttonEdit.textContent = 'Edit';
     buttonDelete.textContent = 'Delete';
     li.className = 'tasks';
-    li.setAttribute("data-status", "active")
-    if (textInput.value === '') {
-        return
+    li.setAttribute("data-status", "active");
+    li.setAttribute("data-id", randomToken());
+    if (!textInput.value) {
+        return;
     }
     divText.textContent = textInput.value
     textInput.value = '';
@@ -32,9 +38,19 @@ function createTask(event) {
     li.append(buttonDelete);
     taskList.append(li);
     taskList.style.visibility = "visible";
+    taskArray.push({id: li.dataset.id, status: li.dataset.status === "active", value: divText.textContent})
+    localStorage.setItem("tasks", JSON.stringify(taskArray));
+
     buttonDelete.addEventListener("click", () => {
-        li.remove()
+        li.remove();
+        taskArray = taskArray.filter(function (elem) {
+            if (elem.id !== li.dataset.id) {
+                return elem
+            }
+        });
+        localStorage.setItem("tasks", JSON.stringify(taskArray));
     });
+
     buttonEdit.addEventListener("click", () => {
         divText.setAttribute("contenteditable", "true");
         divText.setAttribute("tabindex", "-1");
@@ -43,6 +59,12 @@ function createTask(event) {
 
     divText.addEventListener("blur", () => {
         divText.setAttribute("contenteditable", 'false')
+        taskArray.forEach(function (elem) {
+            if (elem.id === li.dataset.id) {
+                return elem.value = divText.textContent;
+            }
+        })
+        localStorage.setItem("tasks", JSON.stringify(taskArray));
     });
 
     divText.addEventListener("click", () => {
@@ -51,17 +73,31 @@ function createTask(event) {
         // li.classList.toggle("active");
         if (li.dataset.status === "active") {
             li.dataset.status = "complete";
+            taskArray.forEach(function (elem) {
+                if (elem.id === li.dataset.id) {
+                    return elem.status = false;
+                }
+            })
+            localStorage.setItem("tasks", JSON.stringify(taskArray));
+
             // outNumberTasks.textContent += "1";
         } else {
             li.dataset.status = "active";
+            taskArray.forEach(function (elem) {
+                if (elem.id === li.dataset.id) {
+                    return elem.status = true;
+                }
+            })
+            localStorage.setItem("tasks", JSON.stringify(taskArray));
         }
     });
 
     divText.addEventListener("keydown", function (event) {
-        if (event.keyCode === SEQUENCENUMBERENTER) {
+        if (event.keyCode === SEQUENCE_NUMBER_ENTER) {
             divText.blur();
         }
     });
+
     divText.addEventListener("click", () => {
         for (let i = taskList.children.length - 1; i >= 0; i--) {
             if (taskList.children[i].dataset.status === "active") {
@@ -69,10 +105,13 @@ function createTask(event) {
             }
         }
     });
+    // localStorage.setItem('task', taskList.innerHTML);
 }
 
 btnClearList.addEventListener("click", () => {
     taskList.innerHTML = '';
+    taskArray = [];
+    localStorage.setItem("tasks", JSON.stringify(taskArray));
 });
 
 btnClearCompleted.addEventListener("click", () => {
@@ -81,6 +120,12 @@ btnClearCompleted.addEventListener("click", () => {
             taskList.children[i].remove()
         }
     }
+    taskArray = taskArray.filter(function (elem) {
+        if (elem.status) {
+            return elem
+        }
+    })
+    localStorage.setItem("tasks", JSON.stringify(taskArray));
 });
 
 selectTypeTask.addEventListener("change", () => {
@@ -114,3 +159,4 @@ selectTypeTask.addEventListener("change", () => {
             }
     }
 });
+let newArr = JSON.parse(localStorage.getItem("tasks"));
