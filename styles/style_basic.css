@@ -24,14 +24,9 @@ button {
     vertical-align: bottom;
 }
 
-p {
+p, ul {
     margin: 0;
     padding: 0;
-}
-
-ul {
-    padding: 0;
-    margin: 0;
 }
 
 input[type="text"]:focus {

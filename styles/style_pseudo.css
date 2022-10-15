@@ -11,11 +11,15 @@
 }
 
 .btnEdit:hover {
-    background: #cb7539;
+    background: #081d9a;
+}
+
+.sortButtonEdit:hover {
+    background: rgba(162, 194, 64, 0.57);
 }
 
 .taskText.active {
-    background: rgba(111, 218, 96, 0.76);
+    background: rgba(63, 192, 46, 0.6);
 }
 
 #selectTypeTask::part(button) {

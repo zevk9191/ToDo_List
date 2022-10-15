@@ -21,14 +21,12 @@
     </form>
     <ul id="taskList"></ul>
     <div id="secondaryButtons">
+        <button id="btnSortAll" class="sortButtonEdit">All</button>
+        <button id="btnSortActive" class="sortButtonEdit">Active Tasks</button>
+        <button id="btnSortComplete" class="sortButtonEdit">Complete Tasks</button>
         <button id="btnClearList">Clear List</button>
         <button id="btnClearCompleted">Clear Completed</button>
-        <select name="typeTask" id="selectTypeTask">
-            <option value="All">All</option>
-            <option value="Active">Active</option>
-            <option value="Completed">Completed</option>
-        </select>
-        <p>You have <span id="outNumberTasks">0</span> task(s) left!</p>
+        <p>You have <span id="outNumberTasks">0</span> task(s)!</p>
     </div>
 </main>
 </body>
