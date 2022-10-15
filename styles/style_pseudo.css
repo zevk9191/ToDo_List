@@ -11,21 +11,27 @@
 }
 
 .btnEdit:hover {
-    background: #cb7539;
+    background: #081d9a;
 }
 
-.taskText::after {
-    content: "";
-    position: absolute;
-    height: 2px;
-    background: #e80606;
-    width: 0%;
-    top: 50%;
-    left: 0%;
-    transform: translateY(-50%);
-    transition: width 0.2s linear;
+.sortButtonEdit:hover {
+    background: rgba(162, 194, 64, 0.57);
 }
 
-.taskText.active::after {
-    width: 100%;
+.taskText.active {
+    background: rgba(63, 192, 46, 0.6);
+}
+
+#selectTypeTask::part(button) {
+    color: white;
+    background-color: #f00;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#selectTypeTask::part(listbox) {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid red;
+    border-radius: 5px;
 }

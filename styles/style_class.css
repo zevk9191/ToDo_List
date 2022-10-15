@@ -11,7 +11,7 @@
 }
 
 .taskButton {
-    background: lightseagreen;
+    background: #7485ce;
     color: #fff;
     padding: 4px 10px;
     margin: 0 0 0 4px;
@@ -31,6 +31,47 @@
 
 .taskText {
     margin: 5px;
-    position: relative;
+    padding: 5px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-transition: background-color 0.5s 0.1s ease;
+    -o-transition: background-color 0.5s 0.1s ease;
+    -webkit-transition: background-color 0.5s 0.1s ease;
+    border: 1px solid rgba(0, 0, 0, 0.63);
+    background: rgba(211, 207, 95, 0.26);
+    outline: none;
 }
 
+.inputText {
+    border: 1px solid rgba(28, 22, 22, 0.54);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    outline: none;
+    height: 24px;
+    width: 200px;
+    background: rgb(241, 241, 241);
+    font-size: 20px;
+    line-height: 22px;
+    color: #404040;
+    font-family: 'Lucida Grande', Verdana, sans-serif;
+
+}
+.sortButtonEdit {
+    margin: 5px;
+    background: #dc8b39;
+    color: #fff;
+    padding: 4px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    vertical-align: bottom;
+    width: auto;
+    height: auto;
+
+}
