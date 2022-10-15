@@ -8,7 +8,6 @@ const outNumberTasks = document.querySelector('#outNumberTasks');
 const SEQUENCE_NUMBER_ENTER = 13;
 const ACTIVE_STATUS = "active";
 const COMPLETE_STATUS = "complete"
-
 let taskArray = [];
 
 (function loadToWeb() {
@@ -45,6 +44,7 @@ function createTask(id, status, text) {
     buttonDelete.textContent = "Delete";
     li.className = "tasks";
     li.setAttribute("data-status", status);
+    if (li.dataset.status === "complete") divText.classList.toggle("active");
     li.setAttribute("data-id", id);
     divText.textContent = text;
     textInput.value = "";
