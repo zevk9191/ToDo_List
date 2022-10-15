@@ -28,9 +28,7 @@ function createTask(event) {
     li.className = 'tasks';
     li.setAttribute("data-status", "active");
     li.setAttribute("data-id", randomToken());
-    if (!textInput.value) {
-        return;
-    }
+    if (!textInput.value) return;
     divText.textContent = textInput.value
     textInput.value = '';
     li.append(divText);
@@ -43,10 +41,8 @@ function createTask(event) {
 
     buttonDelete.addEventListener("click", () => {
         li.remove();
-        taskArray = taskArray.filter(function (elem) {
-            if (elem.id !== li.dataset.id) {
-                return elem
-            }
+        taskArray.forEach(function (elem) {
+            if (elem.id === li.dataset.id) taskArray.splice(elem.length, 1);
         });
         localStorage.setItem("tasks", JSON.stringify(taskArray));
     });
@@ -60,52 +56,37 @@ function createTask(event) {
     divText.addEventListener("blur", () => {
         divText.setAttribute("contenteditable", 'false')
         taskArray.forEach(function (elem) {
-            if (elem.id === li.dataset.id) {
-                return elem.value = divText.textContent;
-            }
+            if (elem.id === li.dataset.id) return elem.value = divText.textContent;
         })
         localStorage.setItem("tasks", JSON.stringify(taskArray));
     });
 
     divText.addEventListener("click", () => {
         divText.classList.toggle("active");
-        // outNumberTasks.textContent = document.getElementsByClassName("active").length;
-        // li.classList.toggle("active");
         if (li.dataset.status === "active") {
             li.dataset.status = "complete";
             taskArray.forEach(function (elem) {
-                if (elem.id === li.dataset.id) {
-                    return elem.status = false;
-                }
+                if (elem.id === li.dataset.id) return elem.status = false;
             })
             localStorage.setItem("tasks", JSON.stringify(taskArray));
-
-            // outNumberTasks.textContent += "1";
         } else {
             li.dataset.status = "active";
             taskArray.forEach(function (elem) {
-                if (elem.id === li.dataset.id) {
-                    return elem.status = true;
-                }
+                if (elem.id === li.dataset.id) return elem.status = true;
             })
             localStorage.setItem("tasks", JSON.stringify(taskArray));
         }
     });
 
     divText.addEventListener("keydown", function (event) {
-        if (event.keyCode === SEQUENCE_NUMBER_ENTER) {
-            divText.blur();
-        }
+        if (event.keyCode === SEQUENCE_NUMBER_ENTER) divText.blur();
     });
 
     divText.addEventListener("click", () => {
         for (let i = taskList.children.length - 1; i >= 0; i--) {
-            if (taskList.children[i].dataset.status === "active") {
-                outNumberTasks.textContent = taskList.children.length;
-            }
+            if (taskList.children[i].dataset.status === "active") outNumberTasks.textContent = taskList.children.length;
         }
     });
-    // localStorage.setItem('task', taskList.innerHTML);
 }
 
 btnClearList.addEventListener("click", () => {
@@ -116,14 +97,10 @@ btnClearList.addEventListener("click", () => {
 
 btnClearCompleted.addEventListener("click", () => {
     for (let i = taskList.children.length - 1; i >= 0; i--) {
-        if (taskList.children[i].dataset.status === "complete") {
-            taskList.children[i].remove()
-        }
+        if (taskList.children[i].dataset.status === "complete") taskList.children[i].remove();
     }
-    taskArray = taskArray.filter(function (elem) {
-        if (elem.status) {
-            return elem
-        }
+    taskArray.forEach(function (elem) {
+        if (elem.status) taskArray.splice(elem.length, 1);
     })
     localStorage.setItem("tasks", JSON.stringify(taskArray));
 });
@@ -160,3 +137,7 @@ selectTypeTask.addEventListener("change", () => {
     }
 });
 let newArr = JSON.parse(localStorage.getItem("tasks"));
+// newArr.forEach(() => {
+//     alert(newArr.length);
+//     // alert(newArr[0].value);
+// })
