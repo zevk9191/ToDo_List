@@ -9,15 +9,15 @@ const btnSortActive = document.querySelector('#btnSortActive');
 const btnSortComplete = document.querySelector('#btnSortComplete');
 const SEQUENCE_NUMBER_ENTER = 13;
 const ACTIVE_STATUS = "active";
-const COMPLETE_STATUS = "complete"
+const COMPLETE_STATUS = "complete";
+let newArr = JSON.parse(localStorage.getItem("tasks"));
 let taskArray = [];
 
-(function loadToWeb() {
-    let newArr = JSON.parse(localStorage.getItem("tasks"))
+if (newArr) {
     for (let elem of newArr) {
         createTask(elem.id, elem.status ? ACTIVE_STATUS : COMPLETE_STATUS, elem.value);
     }
-})()
+}
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
