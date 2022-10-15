@@ -15,7 +15,7 @@ let taskArray = [];
 (function loadToWeb() {
     let newArr = JSON.parse(localStorage.getItem("tasks"))
     for (let elem of newArr) {
-        elem.status ? createTask(elem.id, ACTIVE_STATUS, elem.value) : createTask(elem.id, COMPLETE_STATUS, elem.value);
+        createTask(elem.id, elem.status ? ACTIVE_STATUS : COMPLETE_STATUS, elem.value);
     }
 })()
 
