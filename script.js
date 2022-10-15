@@ -6,14 +6,27 @@ const btnClearCompleted = document.querySelector('#btnClearCompleted');
 const selectTypeTask = document.querySelector('#selectTypeTask');
 const outNumberTasks = document.querySelector('#outNumberTasks');
 const SEQUENCE_NUMBER_ENTER = 13;
+const ACTIVE_STATUS = "active";
+const COMPLETE_STATUS = "complete"
+
 let taskArray = [];
+
+(function loadToWeb() {
+    let newArr = JSON.parse(localStorage.getItem("tasks"))
+    for (let elem of newArr) {
+        if (elem.status) {
+            createTask(elem.id, ACTIVE_STATUS, elem.value);
+        } else {
+            createTask(elem.id, COMPLETE_STATUS, elem.value)
+        }
+    }
+})()
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (!textInput.value) return;
     let inpText = textInput.value;
-    let defaultStatus = "active";
-    createTask(randomToken(), defaultStatus, inpText);
+    createTask(randomToken(), ACTIVE_STATUS, inpText);
 });
 
 function randomToken() {
@@ -47,10 +60,11 @@ function createTask(id, status, text) {
 }
 
 function addListener(buttonDelete, buttonEdit, divText, li) {
+
     buttonDelete.addEventListener("click", () => {
         li.remove();
-        taskArray.forEach(function (elem) {
-            if (elem.id === li.dataset.id) taskArray.splice(elem.length, 1);
+        taskArray.forEach(function (elem, index) {
+            if (elem.id === li.dataset.id) taskArray.splice(index, 1);
         });
         localStorage.setItem("tasks", JSON.stringify(taskArray));
         outNumberTasks.textContent = `${taskArray.length}`;
@@ -105,11 +119,12 @@ btnClearList.addEventListener("click", () => {
 btnClearCompleted.addEventListener("click", () => {
     for (let i = taskList.children.length - 1; i >= 0; i--) {
         if (taskList.children[i].dataset.status === "complete") taskList.children[i].remove();
+        taskArray.forEach(function (elem, index) {
+            if (!elem.status) taskArray.splice(index, 1);
+        })
     }
-    taskArray.forEach(function (elem) {
-        if (elem.status) taskArray.splice(elem.length, 1);
-    })
     localStorage.setItem("tasks", JSON.stringify(taskArray));
+    console.log(taskArray.length)
     outNumberTasks.textContent = `${taskArray.length}`;
 });
 
