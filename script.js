@@ -32,21 +32,21 @@ function getToken() {
 
 function createTask(id, status, text) {
     const li = document.createElement("li");
-    const divText = document.createElement("div");
+    const pre = document.createElement("pre");
     const buttonDelete = document.createElement("button");
     const buttonEdit = document.createElement("button");
     buttonEdit.className = "taskButton btnEdit";
     buttonDelete.className = "taskButton btnDelete";
-    divText.className = "taskText";
+    pre.className = "taskText";
     buttonEdit.textContent = "Edit";
     buttonDelete.textContent = "Delete";
     li.className = "tasks";
     li.setAttribute("data-status", status);
-    if (li.dataset.status === "complete") divText.classList.toggle("active");
+    if (li.dataset.status === "complete") pre.classList.toggle("active");
     li.setAttribute("data-id", id);
-    divText.textContent = text;
+    pre.textContent = text;
     textInput.value = "";
-    li.append(divText);
+    li.append(pre);
     li.append(buttonEdit);
     li.append(buttonDelete);
     taskList.append(li);
@@ -54,10 +54,10 @@ function createTask(id, status, text) {
     taskArray.push({id: id, status: li.dataset.status === "active", value: text});
     localStorage.setItem("tasks", JSON.stringify(taskArray));
     outNumberTasks.textContent = `${taskArray.length}`;
-    addListener(buttonDelete, buttonEdit, divText, li);
+    addListener(buttonDelete, buttonEdit, pre, li);
 }
 
-function addListener(buttonDelete, buttonEdit, divText, li) {
+function addListener(buttonDelete, buttonEdit, text, li) {
 
     buttonDelete.addEventListener("click", () => {
         li.remove();
@@ -68,22 +68,22 @@ function addListener(buttonDelete, buttonEdit, divText, li) {
     });
 
     buttonEdit.addEventListener("click", () => {
-        divText.setAttribute("contenteditable", "true");
-        divText.setAttribute("tabindex", "-1");
-        divText.focus();
+        text.setAttribute("contenteditable", "true");
+        text.setAttribute("tabindex", "-1");
+        text.focus();
     });
 
-    divText.addEventListener("blur", () => {
-        divText.setAttribute("contenteditable", "false")
+    text.addEventListener("blur", () => {
+        text.setAttribute("contenteditable", "false")
         taskArray.forEach(function (elem) {
-            if (elem.id === li.dataset.id) elem.value = divText.textContent;
+            if (elem.id === li.dataset.id) elem.value = text.textContent;
         })
         localStorage.setItem("tasks", JSON.stringify(taskArray));
         outNumberTasks.textContent = `${taskArray.length}`;
     });
 
-    divText.addEventListener("click", () => {
-        divText.classList.toggle("active");
+    text.addEventListener("click", () => {
+        text.classList.toggle("active");
         if (li.dataset.status === "active") {
             li.dataset.status = "complete";
             taskArray.forEach(function (elem) {
@@ -99,8 +99,8 @@ function addListener(buttonDelete, buttonEdit, divText, li) {
         }
     });
 
-    divText.addEventListener("keydown", function (event) {
-        if (event.keyCode === SEQUENCE_NUMBER_ENTER) divText.blur();
+    text.addEventListener("keydown", function (event) {
+        if (event.keyCode === SEQUENCE_NUMBER_ENTER) text.blur();
     });
 }
 
