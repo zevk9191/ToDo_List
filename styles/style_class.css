@@ -1,7 +1,9 @@
 .tasks {
     display: flex;
-    flex-flow: row nowrap;
+    justify-content: center;
+    flex-flow: wrap;
     align-items: center;
+    width: auto;
     padding: 10px;
     background: #f1f1f1;
     font-size: 20px;
@@ -30,8 +32,18 @@
 }
 
 .taskText {
+    box-sizing: content-box;
     margin: 5px;
     padding: 5px;
+    text-align: center;
+    width: 15vw;
+    min-width: 250px;
+    white-space: pre-wrap;
+    overflow: auto;
+    word-break: break-all;
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 3px;
@@ -60,6 +72,7 @@
     font-family: 'Lucida Grande', Verdana, sans-serif;
 
 }
+
 .sortButtonEdit {
     margin: 5px;
     background: #dc8b39;
@@ -73,5 +86,4 @@
     vertical-align: bottom;
     width: auto;
     height: auto;
-
 }
